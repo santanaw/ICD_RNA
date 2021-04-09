@@ -1,0 +1,13 @@
+# Tmp directory (if /tmp does not offer enough disk space)
+main.tmp.dir=/localtmp
+
+# Maximim number of threads used by Eoulsan
+main.local.threads=20
+# Memory to be used by Eoulsan
+main.cluster.default.required.memory=92160
+
+# Debug options
+main.debug=true
+main.printstacktrace=true
+
+# For more options, see: http://www.outils.genomique.biologie.ens.fr/eoulsan/conffile.html
