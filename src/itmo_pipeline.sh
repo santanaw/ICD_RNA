@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Define env variables
+# Define env variables for day 3
 itmo="/kingdoms/csb/workspace3/santana/itmo"
 DATA_MTX_PBS="$itmo/data/rna_seq/MTX_PBS"
 RESULT_EOULSAN="$itmo/results/rna_seq/MTX_PBS/eoulsan"
@@ -32,3 +32,48 @@ gunzip -c A2_S2_L001_R1_001_run2.fastq.gz | awk 'NR % 4 == 0' | head -n 1000000 
 
 # Run eoulsan
 $EOULSAN -conf conf -m 153600 exec workflow-rnaseq.xml design.txt
+
+
+###### Run 1 - Day 10
+
+# Define env variables for day 10
+itmo="/kingdoms/csb/workspace3/santana/itmo"
+DATA_MTX_PBS="$itmo/data/rna_seq/MTX_PBS"
+DATA_MTX_PBS_D10="$itmo/data/rna_seq/MTX_PBS_D10"
+RESULT_EOULSAN_D10="$itmo/results/rna_seq/MTX_PBS_D10/eoulsan"
+EOULSAN="/usr/local/src/eoulsan-2.4/eoulsan.sh"
+
+# Create D10 fastq file directotory
+mkdir -p $DATA_MTX_PBS_D10
+# Create D10 EOULSAN output directory
+mkdir -p $RESULT_EOULSAN_D10
+cd $RESULT_EOULSAN_D10
+
+# Create mock design file
+$EOULSAN createdesign --paired-end $DATA_MTX_PBS_D10/*.fastq.gz $DATA_MTX_PBS/GRCm38.genome.fa.gz $DATA_MTX_PBS/gencode.vM25.annotation.gtf.gz
+
+# Run eoulsan
+$EOULSAN -conf conf.txt -m 184320 exec workflow-rnaseq.D10.v1.xml design.txt
+
+
+
+###### Run 2 - Day 10
+
+# Define env variables for day 10
+itmo="/kingdoms/csb/workspace3/santana/itmo"
+DATA_MTX_PBS="$itmo/data/rna_seq/MTX_PBS"
+DATA_MTX_PBS_D10="$itmo/data/rna_seq/MTX_PBS_D10"
+RESULT_EOULSAN_D10="$itmo/results/rna_seq/MTX_PBS_D10/eoulsan_run2"
+EOULSAN="/usr/local/src/eoulsan-2.4/eoulsan.sh"
+
+# Create D10 fastq file directotory
+mkdir -p $DATA_MTX_PBS_D10
+# Create D10 EOULSAN output directory
+mkdir -p $RESULT_EOULSAN_D10
+cd $RESULT_EOULSAN_D10
+
+# Create mock design file
+$EOULSAN createdesign --paired-end $DATA_MTX_PBS_D10/*.fastq.gz $DATA_MTX_PBS/GRCm38.genome.fa.gz $DATA_MTX_PBS/gencode.vM25.annotation.gtf.gz
+
+# Run eoulsan
+$EOULSAN -conf conf.txt -m 184320 exec workflow-rnaseq.D10.v1.xml design.txt
